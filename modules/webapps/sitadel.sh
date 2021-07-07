@@ -6,7 +6,7 @@ LP='\033[1;35m'
 YLW='\033[1;33m'
 LBBLUE='\e[104m'
 RED='\033[0;31m'
-CONF='/opt/Sitadel/config.yml'
+CONF='/opt/Sitadel/config/config.yml'
 # Configuration Variables
 fp_mod_select(){
 	echo -e "${LP}FINGERPRINT	${YLW}MODULE DESCRIPTION${NC}"
@@ -65,8 +65,12 @@ use_cookie(){
 	fi
 }
 config(){
-	echo -e "${W}Please specify the config file to use, otherwise just hit enter to use default(/opt/Sitadel/config.yml)"
-	read CONF
+	
+	echo -e "${W}Please specify the config file to use, otherwise just hit enter to use default(/opt/Sitadel/config/config.yml)"
+	read CONF1
+	if [[ ${CONF1} == '' ]];then
+		CONF1=CONF
+	fi
 }
 verbose(){
 	echo -e "${W}Please enter the level of verbosity to use(0,1,2,3)"
@@ -86,7 +90,7 @@ verbose(){
 }
 
 # Start of Sitadel Script
-echo -e "${ORNG}"
+echo -e "${RED}"
 figlet -f mini "Sitadel"
 echo -e "${NC}"
 cd /opt/Sitadel
@@ -98,11 +102,11 @@ timeout
 use_cookie
 config
 verbose
-echo -e "${W}Please enter your target${NC}"
-echo -e "${LP}eg. http://example.com"
+echo -e "${LP}eg. http://example.com${NC}"
 read TARGET
 echo "=============================================================================================================="
-python3 sitadel.py -r ${RISKLVL} ${FREDIR} -a ${ATK_MODULE} -f ${FP_MODULE} -t ${TIMO} ${UC} ${COOKIE} --config ${CONF} ${VERB} ${TARGET}
+sudo python3 sitadel.py -r ${RISKLVL} ${FREDIR} -t ${TIMO} ${UC} ${COOKIE} -f ${FP_MODULE} -a ${ATK_MODULE} --config $CONF ${VERB} ${TARGET}
 echo "=============================================================================================================="
-sleeo 2
-./modules/module.sh
+sleep 2
+
+##########################______________ VGhlIERlYWQgQnVubnkgQ2x1Yg== ______________##########################

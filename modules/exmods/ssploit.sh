@@ -11,7 +11,8 @@ echo -e "${ORNG}"
 figlet -f mini "ShodanSploit"
 echo -e "${NC}"
 cd /opt/shodansploit
-python shodansploit.py
+sudo python shodansploit.py
 sleep 2
-cd /opt/sifter
-./modules/module.sh
+
+
+##########################______________ VGhlIERlYWQgQnVubnkgQ2x1Yg== ______________##########################
